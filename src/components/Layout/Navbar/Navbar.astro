@@ -1,0 +1,27 @@
+---
+import Drawer from "../Drawer/Drawer.astro";
+import NavItems from "./NavItems.astro";
+import MainLogo from "@components/Logo/MainLogo.astro";
+---
+
+<nav class="py-0 navbar">
+  <span class="navbar-start">
+    <slot name="nav-start">
+      <MainLogo />
+    </slot>
+  </span>
+
+  <div class="navbar-end">
+    <slot name="nav-end">
+      <NavItems class="desktop-only lg:menu lg:menu-horizontal" />
+
+      <Drawer class="mobile-only" drawerId="main-nav">
+        <NavItems
+          slot={"nav-items"}
+          direction="vertical"
+          class="items-start gap-y-4"
+        />
+      </Drawer>
+    </slot>
+  </div>
+</nav>

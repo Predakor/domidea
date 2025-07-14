@@ -1,0 +1,12 @@
+---
+import PageCreator from "./PageCreator.astro";
+import { info } from "@data/siteInfo.json";
+---
+
+<footer class="flex flex-col items-center gap-2">
+  <aside class="text-lg">
+    <strong> {info.name} </strong>
+    <span>© -all rights reserved</span>
+  </aside>
+  <PageCreator />
+</footer>

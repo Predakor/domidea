@@ -1,0 +1,13 @@
+---
+export type AnalyticsType = {
+  verificationString: string;
+};
+
+export interface Props {
+  analytics: AnalyticsType;
+}
+const { analytics } = Astro.props;
+---
+
+<!-- Google analytics -->
+<meta name="google-site-verification" content={analytics.verificationString} />

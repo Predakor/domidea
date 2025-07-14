@@ -1,0 +1,26 @@
+---
+import Layout from "@layouts/Layout.astro";
+import Page from "@layouts/Page.astro";
+import site from "@data/siteInfo.json";
+export interface Props {
+  title: string;
+  description: string;
+  canonicalLink?: "";
+  icon?: string;
+}
+
+const { title, description, canonicalLink, icon } = Astro.props;
+
+const metadata = {
+  title: title ?? site.info.name,
+  description: description ?? site.info.description,
+  canonicalLink: canonicalLink ?? site.info.origin,
+  icon: icon ?? site.icon,
+};
+---
+
+<Page metadata={metadata}>
+  <Layout>
+    <slot />
+  </Layout>
+</Page>

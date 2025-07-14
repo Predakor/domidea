@@ -1,0 +1,35 @@
+---
+import Stack from "@components/Layout/Stack.astro";
+
+export interface Props {
+  link: string;
+  label: string;
+  class?: string;
+}
+
+const { link, label, class: styles } = Astro.props;
+const isExternal = link.startsWith("http");
+
+const linkConfig = isExternal
+  ? {
+      rel: "noopener noreferrer",
+      referrerPolicy: "no-referrer",
+      target: "_blank",
+    }
+  : {};
+---
+
+<a
+  href={link}
+  {...linkConfig}
+  class={`flex flex-row items-center ${styles ?? ""}`}
+  aria-label={label}
+>
+  <Stack direction="row" spacing="minimal" class="label">
+    <slot name="label" />
+  </Stack>
+
+  <strong class="hover:link">
+    <slot />
+  </strong>
+</a>

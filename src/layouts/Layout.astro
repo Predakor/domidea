@@ -1,0 +1,18 @@
+---
+import Navbar from "@components/Layout/Navbar/Navbar.astro";
+import Footer from "@components/Layout/Footer/Footer.astro";
+---
+
+<slot name="header">
+  <header>
+    <Navbar />
+  </header>
+</slot>
+
+<main class="flex flex-col lg:items-center grow">
+  <slot />
+</main>
+
+<slot name="footer">
+  <Footer />
+</slot>

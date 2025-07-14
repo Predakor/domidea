@@ -1,0 +1,37 @@
+---
+import PageSection from "@components/Layout/Section/PageSection.astro";
+import Stack from "@components/Layout/Stack.astro";
+import ContactLink from "@components/Link/ContactLink.astro";
+
+import { emails, locations, phones } from "@data/contactData.json";
+---
+
+<PageSection title="Get in touch">
+  <Stack spacing="small">
+    {
+      emails.map(({ label, name }) => (
+        <ContactLink label={label} link={`mailto:${name}`} icon="mdi:email">
+          {name}
+        </ContactLink>
+      ))
+    }
+    {
+      phones.map(({ prefix, number, label }) => (
+        <ContactLink
+          label={label}
+          link={`tel:${prefix}${number}`}
+          icon="mdi:phone"
+        >
+          {number}
+        </ContactLink>
+      ))
+    }
+    {
+      locations.map(({ address, label, link }) => (
+        <ContactLink label={label} link={link} icon="mdi:location">
+          {address}
+        </ContactLink>
+      ))
+    }
+  </Stack>
+</PageSection>

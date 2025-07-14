@@ -1,0 +1,37 @@
+@import "tailwindcss";
+@plugin "@tailwindcss/typography";
+@plugin "daisyui";
+
+@layer components {
+  .section {
+    @apply w-full max-w-[100rem] justify-around;
+    @apply px-4 lg:px-16 2xl:px-32 py-4 lg:py-8;
+    @apply flex flex-col;
+    @apply gap-4 lg:gap-8;
+  }
+
+  h1 {
+    @apply text-4xl lg:text-6xl font-extrabold leading-tight tracking-tight;
+  }
+  h2 {
+    @apply text-3xl lg:text-4xl font-bold leading-snug tracking-tight;
+  }
+  h3 {
+    @apply text-2xl lg:text-3xl font-semibold leading-snug;
+  }
+  h4 {
+    @apply text-xl lg:text-2xl font-medium leading-snug;
+  }
+  p {
+    @apply text-base leading-relaxed text-base-content;
+  }
+}
+
+@layer utilities {
+  .mobile-only {
+    @apply lg:hidden;
+  }
+  .desktop-only {
+    @apply not-lg:hidden;
+  }
+}

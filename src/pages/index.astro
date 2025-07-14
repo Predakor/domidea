@@ -1,0 +1,62 @@
+---
+import HomePage from "src/templates/HomePage.astro";
+import PageSection from "src/components/Layout/Section/PageSection.astro";
+import Stack from "src/components/Layout/Stack.astro";
+import ContactSection from "src/templates/ContactSection.astro";
+import HeroSection from "src/templates/HeroSection.astro";
+
+const title = "About;";
+const description = "This is the about page";
+const canonicalLink = "/about;";
+const icon = "/favicon.svg";
+---
+
+<HomePage title={title} description={description}>
+  <HeroSection title="Before you start" />
+
+  <PageSection title="Complete the items from the list below">
+    <Stack>
+      <Stack>
+        <details class="collapse collapse-arrow bg-base-200 prose prose-lg">
+          <summary class="collapse-title font-medium text-lg">
+            Add your navigation routes
+          </summary>
+          <div class="collapse-content text-base">
+            Define site navigation inside your config or layout slots.
+          </div>
+        </details>
+
+        <details class="collapse collapse-arrow bg-base-200 prose prose-lg">
+          <summary class="collapse-title font-medium text-lg">
+            Complete site metadata
+          </summary>
+          <div class="collapse-content text-base">
+            Fill in `siteInfo.json` with your brand, links, and contact details.
+          </div>
+        </details>
+
+        <details class="collapse collapse-arrow bg-base-200 prose prose-lg">
+          <summary class="collapse-title font-medium text-lg">
+            Customize theme and components
+          </summary>
+          <div class="collapse-content text-base">
+            Tailor colors, typography, and reusable components using DaisyUI or
+            Tailwind config.
+          </div>
+        </details>
+
+        <details class="collapse collapse-arrow bg-base-200 prose prose-lg">
+          <summary class="collapse-title font-medium text-lg">
+            Write content
+          </summary>
+          <div class="collapse-content text-base">
+            Use `.mdx` or `.md` for pages and sections — combine with JSON data
+            where needed.
+          </div>
+        </details>
+      </Stack>
+    </Stack>
+  </PageSection>
+
+  <ContactSection />
+</HomePage>

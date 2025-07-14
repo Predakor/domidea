@@ -1,0 +1,20 @@
+{
+  "lang": "en",
+  "icon": "____Provide path to a favicon___",
+
+  "info": {
+    "name": "__SiteName___",
+    "origin": "___SiteOrigin___",
+    "description": " ____Please provide page description____"
+  },
+
+  "ogInfo": {
+    "ogImage": "/og-image.jpg"
+  },
+
+  "creator": {
+    "name": "Bosko.dev",
+    "label": "Link to page author",
+    "link": "https://predakor.github.io"
+  }
+}

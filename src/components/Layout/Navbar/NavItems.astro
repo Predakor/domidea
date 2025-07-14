@@ -1,0 +1,22 @@
+---
+import NavLink from "@components/Link/NavLink.astro";
+import routes from "@data/navRoutes.json";
+
+export interface Props {
+  class?: string;
+  direction?: "vertical" | "horizontal";
+}
+
+const { class: styles, direction = "vertical" } = Astro.props;
+const dir = direction === "vertical" ? "menu-vertical" : "menu-horizontal";
+---
+
+<ul class={`menu ${dir} ${styles}`}>
+  {
+    routes.map(({ link, label }) => (
+      <li class="lg:text-xl text-3xl">
+        <NavLink to={link} label={label} />
+      </li>
+    ))
+  }
+</ul>

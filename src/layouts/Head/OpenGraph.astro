@@ -1,0 +1,27 @@
+---
+export type OpenGraphType = {
+  title: string;
+  description: string;
+  type: string;
+  url: string;
+  image: string;
+};
+export interface Props {
+  data: OpenGraphType;
+}
+
+const { title, description, image, type, url } = Astro.props.data;
+---
+
+<!-- Open Graph -->
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description} />
+<meta property="og:type" content={type} />
+<meta property="og:url" content={url} />
+<meta property="og:image" content={image} />
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content={title} />
+<meta name="twitter:description" content={description} />
+<meta name="twitter:image" content={image} />

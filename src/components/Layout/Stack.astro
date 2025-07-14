@@ -1,0 +1,32 @@
+---
+export interface Props {
+  direction?: "row" | "col" | "rowReverse" | "colReverse";
+  spacing?: "none" | "minimal" | "small" | "medium" | "large";
+  class?: string;
+}
+
+const {
+  direction = "col",
+  spacing = "medium",
+  class: extra = "",
+} = Astro.props;
+
+const flexGap = {
+  none: "gap-0",
+  minimal: "gap-1",
+  small: "gap-2",
+  medium: "gap-4",
+  large: "gap-8",
+}[spacing];
+
+const flexDirection = {
+  row: "flex-row",
+  col: "flex-col",
+  rowReverse: "flex-row-reverse",
+  colReverse: "flex-col-reverse",
+}[direction];
+---
+
+<div class={`flex ${flexDirection} ${flexGap} ${extra}`}>
+  <slot />
+</div>

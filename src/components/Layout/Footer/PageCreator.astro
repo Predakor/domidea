@@ -1,0 +1,12 @@
+---
+import Link from "@components/Link/Link.astro";
+import { creator } from "@data/siteInfo.json";
+---
+
+<Link
+  link="https://predakor.github.io"
+  label="Link to page author"
+  class="font-normal text-base"
+>
+  Created and developed by <strong class="link"> {creator.name} </strong>
+</Link>

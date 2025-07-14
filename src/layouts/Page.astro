@@ -1,0 +1,31 @@
+---
+import "../styles/global.css";
+import site from "@data/siteInfo.json";
+import Head, { type MetaData } from "./Head/Head.astro";
+
+interface Props {
+  metadata: MetaData;
+}
+
+const { metadata } = Astro.props;
+
+const analytics = {
+  verificationString: "AulG9cK8kCu6IMJ734_Pi1Q9kHisMaZ5tSDCB_jVjFI",
+};
+
+const openGrap = {
+  title: metadata.title,
+  description: metadata.description,
+  type: "website",
+  image: site.info.origin + site.ogInfo.ogImage,
+  url: site.info.origin,
+};
+---
+
+<!doctype html>
+<html lang={site.lang}>
+  <Head metadata={metadata} analytics={analytics} openGraph={openGrap} />
+  <body class="flex flex-col max-w-svw min-h-svh overflow-x-clip">
+    <slot />
+  </body>
+</html>

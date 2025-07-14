@@ -1,0 +1,20 @@
+---
+import { Icon } from "astro-icon/components";
+
+interface Props {
+  drawerId: string;
+  label: string;
+  class?: string;
+}
+const { drawerId, label, class: styles = "" } = Astro.props;
+---
+
+<label
+  for={drawerId}
+  class={`block w-fit drawer-button ${styles}`}
+  aria-label={label}
+>
+  <slot>
+    <Icon size={"48"} name={"mdi:menu"} />
+  </slot>
+</label>

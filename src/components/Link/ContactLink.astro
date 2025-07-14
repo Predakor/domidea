@@ -1,0 +1,22 @@
+---
+import { Icon } from "astro-icon/components";
+import Link from "./Link.astro";
+
+type IconType = `mdi:${string}`;
+
+interface Props {
+  label: string;
+  link: string;
+  icon?: IconType;
+  class?: string;
+}
+const { label, link, class: styles = "", icon } = Astro.props;
+---
+
+<Link label={label} link={link} class={`gap-2 ${styles}`}>
+  {icon && <Icon slot={"label"} name={icon} size={32} aria-hidden={true} />}
+  <strong slot={"label"} class="sr-only lg:not-sr-only no-underline">
+    {label}
+  </strong>
+  <slot />
+</Link>

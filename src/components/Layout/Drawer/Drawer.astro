@@ -1,0 +1,54 @@
+---
+import { Icon } from "astro-icon/components";
+import DrawerButton from "./DrawerButton.astro";
+import DrawerOverlay from "./DrawerOverlay.astro";
+
+export interface Props {
+  title?: string;
+  drawerId: string;
+  withOverlay?: boolean;
+  position?: "start" | "end";
+  class?: string;
+}
+
+const {
+  title = "Menu",
+  drawerId,
+  withOverlay = true,
+  class: styles = "",
+  position = "end",
+} = Astro.props;
+
+const drawerSide = position === "end" ? "drawer-end" : "";
+---
+
+<div class={`drawer ${drawerSide} ${styles}`}>
+  <input id={drawerId} type="checkbox" class="drawer-toggle" />
+
+  <div class="justify-items-end drawer-content">
+    <DrawerButton drawerId={drawerId} label="open navigation menu" />
+  </div>
+
+  <div class="drawer-side">
+    {withOverlay && <DrawerOverlay for={drawerId} />}
+
+    <nav
+      class="flex flex-col justify-between bg-base-200/80 backdrop-blur-2xl p-2 w-70 min-h-full"
+    >
+      <header class="flex items-center">
+        <slot name="header">
+          {title && <h2 class="font-bold text-3xl grow">{title}</h2>}
+          <DrawerButton drawerId={drawerId} label="close navigation menu">
+            <Icon size={48} name="mdi:close" />
+          </DrawerButton>
+        </slot>
+      </header>
+
+      <slot name="nav-items" />
+
+      <footer>
+        <slot name="footer" />
+      </footer>
+    </nav>
+  </div>
+</div>

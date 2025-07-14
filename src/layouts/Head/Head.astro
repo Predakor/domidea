@@ -1,0 +1,37 @@
+---
+import { info } from "@data/siteInfo.json";
+import Analytics, { type AnalyticsType } from "./Analytics.astro";
+import OpenGraph, { type OpenGraphType } from "./OpenGraph.astro";
+
+export interface MetaData {
+  title: string;
+  description: string;
+  canonicalLink: string;
+  icon?: string;
+}
+
+export interface Props {
+  metadata: MetaData;
+  openGraph?: OpenGraphType;
+  analytics?: AnalyticsType;
+}
+
+const { metadata, openGraph, analytics } = Astro.props;
+---
+
+<head>
+  <title>{`${metadata.title} | ${info.name}`}</title>
+  <meta name="description" content={metadata.description} />
+  <meta name="generator" content={Astro.generator} />
+  <meta name="viewport" content="width=device-width" />
+  <meta charset="UTF-8" />
+  <meta name="theme-color" content="#000000" />
+
+  <link rel="icon" type="image/svg+xml" href={metadata.icon} />
+  <link rel="apple-touch-icon" type="image/svg+xml" href={metadata.icon} />
+  <link rel="canonical" href={info.origin + metadata.canonicalLink} />
+
+  {openGraph && <OpenGraph data={openGraph} />}
+
+  {analytics && <Analytics analytics={analytics} />}
+</head>
