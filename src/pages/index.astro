@@ -8,6 +8,12 @@ import HeroImage from "@images/landing/hero-image.jpg";
 import Image from "astro/components/Image.astro";
 import BriefsSection from "src/templates/BriefsSection.astro";
 
+import Service1 from "@images/services/service-1.webp";
+import Service2 from "@images/services/service-2.webp";
+import Service3 from "@images/services/service-3.webp";
+import ServiceCard, { type Service } from "@components/Cards/ServiceCard.astro";
+import { Icon } from "astro-icon/components";
+
 const title = "About;";
 const description = "This is the about page";
 const canonicalLink = "/about;";
@@ -25,6 +31,29 @@ const hero = {
 };
 const briefs = {
   title: `Prowadzimy Cię przez cały proces projektowy`,
+};
+
+const services = {
+  items: [
+    {
+      name: `Projekty 
+      Domów`,
+      image: Service1,
+      link: "/uslugi/projekty-domow",
+    },
+    {
+      name: `Przebudowy 
+      i Adaptacje`,
+      image: Service2,
+      link: "/uslugi/przebudowy",
+    },
+    {
+      name: `Projekty 
+      Wnętrz`,
+      image: Service3,
+      link: "/uslugi/projekty-wnetrz",
+    },
+  ] as Service[],
 };
 ---
 
@@ -46,8 +75,27 @@ const briefs = {
 
   <BriefsSection />
 
-  <section>
-    <h2>Wszechstronne usługi dla Twojej przestrzeni</h2>
+  <section class="relative gap-8 lg:gap-16 section">
+    <h2 class="text-center">
+      Wszechstronne <strong>usługi</strong>
+      <br />
+      dla <strong> Twojej </strong> przestrzeni
+    </h2>
+
+    <div class="justify-around gap-4 overflow-y-hidden carousel">
+      {services.items.map((service) => <ServiceCard service={service} />)}
+    </div>
+
+    <a href="/uslugi" class="self-center">
+      <span class="btn btn-primary btn-xl">
+        <span class="join-item">Sprawdź nasze usługi </span>
+        <Icon class="join-item" name={"mdi:launch"} />
+      </span>
+    </a>
   </section>
+
+  <ContactSection />
+  <ContactSection />
+  <ContactSection />
   <ContactSection />
 </HomePage>

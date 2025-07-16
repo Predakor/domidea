@@ -1,0 +1,32 @@
+---
+import type { ImageMetadata } from "astro";
+import { Image } from "astro:assets";
+
+export type Service = {
+  image: ImageMetadata;
+  link: string;
+  name: string;
+};
+
+export interface Props {
+  service: Service;
+}
+const { image, link, name } = Astro.props.service;
+---
+
+<div class="relative lg:hover:scale-110 lg:transition-all serviceCard">
+  <a href={link} data-prefetch>
+    <figure>
+      <Image src={image} alt={`usługa ${name}`} fit="contain" />
+    </figure>
+    <div
+      class="bottom-0 absolute backdrop-blur-xs w-full text-center whitespace-pre-line"
+    >
+      <p
+        class="text-shadow-lg pb-2 lg:pb-4 xl:pb-8 font-semibold text-base lg:text-2xl xl:text-3xl"
+      >
+        {name}
+      </p>
+    </div>
+  </a>
+</div>
