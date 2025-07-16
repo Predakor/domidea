@@ -4,59 +4,50 @@ import PageSection from "src/components/Layout/Section/PageSection.astro";
 import Stack from "src/components/Layout/Stack.astro";
 import ContactSection from "src/templates/ContactSection.astro";
 import HeroSection from "src/templates/HeroSection.astro";
+import HeroImage from "@images/landing/hero-image.jpg";
+import Image from "astro/components/Image.astro";
+import BriefsSection from "src/templates/BriefsSection.astro";
 
 const title = "About;";
 const description = "This is the about page";
 const canonicalLink = "/about;";
 const icon = "/favicon.svg";
+
+const hero = {
+  title: `
+    Wymarzony dom
+    zaczyna się od wizji
+  `,
+  subTitle: `
+    My zamieniamy Twoją 
+    wizję w realny projekt.
+  `,
+};
+const briefs = {
+  title: `Prowadzimy Cię przez cały proces projektowy`,
+};
 ---
 
 <HomePage title={title} description={description}>
-  <HeroSection title="Before you start" />
-
-  <PageSection title="Complete the items from the list below">
-    <Stack>
-      <Stack>
-        <details class="collapse collapse-arrow bg-base-200 prose prose-lg">
-          <summary class="collapse-title font-medium text-lg">
-            Add your navigation routes
-          </summary>
-          <div class="collapse-content text-base">
-            Define site navigation inside your config or layout slots.
-          </div>
-        </details>
-
-        <details class="collapse collapse-arrow bg-base-200 prose prose-lg">
-          <summary class="collapse-title font-medium text-lg">
-            Complete site metadata
-          </summary>
-          <div class="collapse-content text-base">
-            Fill in `siteInfo.json` with your brand, links, and contact details.
-          </div>
-        </details>
-
-        <details class="collapse collapse-arrow bg-base-200 prose prose-lg">
-          <summary class="collapse-title font-medium text-lg">
-            Customize theme and components
-          </summary>
-          <div class="collapse-content text-base">
-            Tailor colors, typography, and reusable components using DaisyUI or
-            Tailwind config.
-          </div>
-        </details>
-
-        <details class="collapse collapse-arrow bg-base-200 prose prose-lg">
-          <summary class="collapse-title font-medium text-lg">
-            Write content
-          </summary>
-          <div class="collapse-content text-base">
-            Use `.mdx` or `.md` for pages and sections — combine with JSON data
-            where needed.
-          </div>
-        </details>
-      </Stack>
+  <HeroSection class="justify-start pt-24">
+    <Stack direction="col" class="whitespace-pre-line">
+      <h1 class="text-shadow-lg lg:mr-[25%] text-end">{hero.title}</h1>
+      <h2 class="text-shadow-lg lg:ml-[50%]">{hero.subTitle}</h2>
     </Stack>
-  </PageSection>
 
+    <Image
+      class={"absolute inset-0 w-svw min-h-svh object-cover mask-alpha mask-b-from-0 -z-10 "}
+      src={HeroImage}
+      alt={"hero"}
+      role={"presentation"}
+      loading="eager"
+    />
+  </HeroSection>
+
+  <BriefsSection />
+
+  <section>
+    <h2>Wszechstronne usługi dla Twojej przestrzeni</h2>
+  </section>
   <ContactSection />
 </HomePage>
