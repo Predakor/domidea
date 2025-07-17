@@ -8,17 +8,35 @@
   prefersdark: true;
   color-scheme: "dark";
 
-  --color-base-100: oklch(5% 0.01 250);
-  --color-base-200: oklch(15% 0.008 250);
-  --color-base-300: oklch(20% 0.007 250);
+  --color-base-100: oklch(10% 0.01 250);
+  --color-base-200: oklch(20% 0.008 250);
+  --color-base-300: oklch(25% 0.007 250);
+}
+
+@layer base {
+  h1 {
+    @apply text-4xl lg:text-7xl font-bold;
+  }
+  h2 {
+    @apply text-3xl lg:text-5xl font-semibold leading-snug;
+  }
+  h3 {
+    @apply text-2xl lg:text-4xl font-medium leading-snug;
+  }
+  h4 {
+    @apply text-xl lg:text-3xl font-normal leading-snug;
+  }
+  p {
+    @apply text-lg leading-relaxed text-base-content;
+  }
 }
 
 @layer components {
   .section {
-    @apply w-full max-w-[100rem] justify-around;
-    @apply px-4 lg:px-16 2xl:px-32 py-4 lg:py-8;
+    @apply w-full max-w-[120rem] justify-around;
+    @apply px-4 lg:px-16 2xl:px-64 py-4 lg:py-8;
     @apply flex flex-col;
-    @apply gap-4 lg:gap-8;
+    @apply gap-8 lg:gap-16;
   }
 
   .serviceCard {
@@ -32,22 +50,6 @@
       @apply rounded-r-2xl;
     }
   }
-
-  h1 {
-    @apply text-4xl lg:text-7xl font-bold leading-tight tracking-tight;
-  }
-  h2 {
-    @apply text-3xl lg:text-5xl font-semibold leading-snug tracking-tight;
-  }
-  h3 {
-    @apply text-2xl lg:text-4xl font-medium leading-snug;
-  }
-  h4 {
-    @apply text-xl lg:text-3xl font-normal leading-snug;
-  }
-  p {
-    @apply text-lg leading-relaxed text-base-content;
-  }
 }
 
 @layer utilities {
@@ -56,5 +58,11 @@
   }
   .desktop-only {
     @apply not-lg:hidden;
+  }
+  .colors-alternate {
+    @apply bg-base-content/90;
+    & :is(h1, h2, h3, h4, h5, h6, p, blockquote) {
+      @apply text-base-100;
+    }
   }
 }

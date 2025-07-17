@@ -10,6 +10,8 @@
       "@assets/*": ["src/assets/*"],
       "@images/*": ["src/images/*"],
 
+      "@models/*": ["src/types/*"],
+
       "@content/*": ["src/context/*"],
       "@data/*": ["src/data/*"],
 

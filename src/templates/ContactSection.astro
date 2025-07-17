@@ -1,37 +1,37 @@
 ---
-import PageSection from "@components/Layout/Section/PageSection.astro";
+import ContactFiels from "@components/ContactFiels.astro";
+import ContactForm from "@components/Forms/ContactForm.astro";
 import Stack from "@components/Layout/Stack.astro";
-import ContactLink from "@components/Link/ContactLink.astro";
 
-import { emails, locations, phones } from "@data/contactData.json";
+import contacts from "@data/contactData.json";
 ---
 
-<PageSection title="Get in touch">
-  <Stack spacing="small">
-    {
-      emails.map(({ label, name }) => (
-        <ContactLink label={label} link={`mailto:${name}`} icon="mdi:email">
-          {name}
-        </ContactLink>
-      ))
-    }
-    {
-      phones.map(({ prefix, number, label }) => (
-        <ContactLink
-          label={label}
-          link={`tel:${prefix}${number}`}
-          icon="mdi:phone"
-        >
-          {number}
-        </ContactLink>
-      ))
-    }
-    {
-      locations.map(({ address, label, link }) => (
-        <ContactLink label={label} link={link} icon="mdi:location">
-          {address}
-        </ContactLink>
-      ))
-    }
-  </Stack>
-</PageSection>
+<section class="section" id="kontakt">
+  <div class="flex lg:flex-row flex-col justify-center gap-y-16">
+    <Stack class="lg:w-xl">
+      <h2 class="font-normal">
+        Masz <strong>działkę</strong>,
+        <br />
+        <strong>pomysł</strong> albo <strong>pytanie</strong>?
+      </h2>
+      <div class="text-balance">
+        <p class="text-base-content/85">
+          <strong>Możemy pogadać</strong> — o budowie, przebudowie, wykończeniu wnętrz
+          albo po prostu o pomyśle, który dopiero się rodzi.
+        </p>
+        <br />
+        <p class="text-base-content/85">
+          Chętnie doradzimy i pomożemy z pierwszymi krokami.
+        </p>
+      </div>
+      <Stack spacing="small">
+        <ContactFiels contacts={contacts} />
+      </Stack>
+    </Stack>
+
+    <Stack>
+      <h3>Wyślij nam wiadomość</h3>
+      <ContactForm />
+    </Stack>
+  </div>
+</section>

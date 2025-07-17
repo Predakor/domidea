@@ -1,0 +1,20 @@
+---
+export interface Props {
+  id: string;
+  label: string;
+  placeholder: string;
+}
+const { id, label, placeholder } = Astro.props;
+---
+
+<label class="floating-label bg-base-200 rounded">
+  <span>{label}</span>
+  <textarea
+    name={label}
+    id={id}
+    rows="5"
+    placeholder={placeholder}
+    required={true}
+    class="w-full resize-none textarea-xl textarea textarea-ghost textarea-primary"
+  ></textarea>
+</label>

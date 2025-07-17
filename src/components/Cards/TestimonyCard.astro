@@ -1,0 +1,45 @@
+---
+import StarRating from "@components/StartReview/StarRating.astro";
+import UserCard from "./UserCard.astro";
+import Stack from "@components/Layout/Stack.astro";
+
+export interface UserReview {
+  review: {
+    title: string;
+    rating: number;
+    message: string;
+  };
+  user: {
+    name: string;
+    job: string;
+    pictureUrl?: string;
+  };
+}
+
+export interface Props {
+  review: UserReview;
+}
+
+const maxRating = 5;
+const { user, review } = Astro.props.review;
+---
+
+<article
+  class="flex flex-col lg:w-full min-w-80"
+  aria-label={`testimonial from ${user.name}`}
+>
+  <Stack direction="row" spacing="small">
+    <StarRating rating={review.rating} maxRating={maxRating} iconSize={32} />
+  </Stack>
+
+  <header class="flex flex-col gap-2">
+    <h4 class="font-semibold text-xl line-clamp-1">{review.title}</h4>
+    <blockquote class="ml-2 w-full text-md line-clamp-3 text-balance">
+      {review.message}
+    </blockquote>
+  </header>
+
+  <footer class="flex gap-x-2 mt-4">
+    <UserCard user={user} />
+  </footer>
+</article>

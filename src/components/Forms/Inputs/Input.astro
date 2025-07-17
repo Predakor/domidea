@@ -1,0 +1,20 @@
+---
+interface Props {
+  type: astroHTML.JSX.HTMLInputTypeAttribute;
+  placeholder: string;
+  label: string;
+}
+const { type, label, placeholder = "" } = Astro.props;
+---
+
+<label class="floating-label bg-base-200 rounded">
+  <span>
+    {label}
+  </span>
+
+  <input
+    type={type}
+    class="w-full input input-ghost input-lg lg:input-xl input-primary"
+    placeholder={placeholder}
+  />
+</label>

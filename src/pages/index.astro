@@ -1,18 +1,21 @@
 ---
-import HomePage from "src/templates/HomePage.astro";
-import PageSection from "src/components/Layout/Section/PageSection.astro";
-import Stack from "src/components/Layout/Stack.astro";
-import ContactSection from "src/templates/ContactSection.astro";
-import HeroSection from "src/templates/HeroSection.astro";
 import HeroImage from "@images/landing/hero-image.jpg";
 import Image from "astro/components/Image.astro";
+import Stack from "src/components/Layout/Stack.astro";
 import BriefsSection from "src/templates/BriefsSection.astro";
+import ContactSection from "src/templates/ContactSection.astro";
+import HeroSection from "src/templates/HeroSection.astro";
+import HomePage from "src/templates/HomePage.astro";
 
+import ServiceCard, { type Service } from "@components/Cards/ServiceCard.astro";
+import type { UserReview } from "@components/Cards/TestimonyCard.astro";
 import Service1 from "@images/services/service-1.webp";
 import Service2 from "@images/services/service-2.webp";
 import Service3 from "@images/services/service-3.webp";
-import ServiceCard, { type Service } from "@components/Cards/ServiceCard.astro";
 import { Icon } from "astro-icon/components";
+
+import TestimonyBackground from "@images/landing/reviews-background.jpg";
+import Testimonials from "src/templates/Testimonials.astro";
 
 const title = "About;";
 const description = "This is the about page";
@@ -55,6 +58,45 @@ const services = {
     },
   ] as Service[],
 };
+
+const reviews: UserReview[] = [
+  {
+    review: {
+      title: "Profesjonalne podejście",
+      rating: 5,
+      message:
+        "Współpraca przebiegała sprawnie, wszystko zgodnie z ustaleniami. Świetny kontakt i pełen profesjonalizm na każdym etapie projektu.",
+    },
+    user: {
+      name: "Anna Kowalska",
+      job: "Marketing Manager",
+    },
+  },
+  {
+    review: {
+      title: "Efekty przerosły oczekiwania",
+      rating: 5,
+      message:
+        "Projekt został zrealizowany szybciej niż zakładaliśmy, a efekt końcowy był po prostu świetny. Polecam z całego serca!",
+    },
+    user: {
+      name: "Tomasz Nowak",
+      job: "Właściciel firmy IT",
+    },
+  },
+  {
+    review: {
+      title: "Świetna komunikacja i zaangażowanie",
+      rating: 4,
+      message:
+        "Zespół był bardzo zaangażowany, a wszelkie poprawki były wdrażane niemal od razu. Jedyne zastrzeżenie to drobne opóźnienie w harmonogramie.",
+    },
+    user: {
+      name: "Karolina Wiśniewska",
+      job: "Freelance UX Designer",
+    },
+  },
+];
 ---
 
 <HomePage title={title} description={description}>
@@ -75,7 +117,7 @@ const services = {
 
   <BriefsSection />
 
-  <section class="relative gap-8 lg:gap-16 section">
+  <section class="relative section">
     <h2 class="text-center">
       Wszechstronne <strong>usługi</strong>
       <br />
@@ -87,15 +129,29 @@ const services = {
     </div>
 
     <a href="/uslugi" class="self-center">
-      <span class="btn btn-primary btn-xl">
+      <span class="btn btn-primary lg:btn-xl">
         <span class="join-item">Sprawdź nasze usługi </span>
         <Icon class="join-item" name={"mdi:launch"} />
       </span>
     </a>
   </section>
 
-  <ContactSection />
-  <ContactSection />
-  <ContactSection />
+  <section class="relative section">
+    <h2 class="text-end">
+      <strong>Dobre</strong> projekty
+      <br />
+      to nie tylko <strong>rysunki</strong>
+    </h2>
+
+    <Testimonials reviews={reviews} />
+
+    <div class="lg:min-h-[500px]"></div>
+    <Image
+      src={TestimonyBackground}
+      alt={"background"}
+      role={"presentation"}
+      class={"left-0 lg:top-1/4 absolute mask mask-alpha mask-t-from-0 mask-t-to-95% -z-10 mask-b-from-80% mask-b-to-100% "}
+    />
+  </section>
   <ContactSection />
 </HomePage>

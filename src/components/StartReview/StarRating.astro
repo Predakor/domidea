@@ -1,0 +1,17 @@
+---
+import StarIcon from "./StarIcon.astro";
+export interface Props {
+  rating: number;
+  maxRating?: number;
+  iconSize?: number;
+}
+
+const { rating, maxRating = 5, iconSize } = Astro.props;
+
+const filledStars = Array.from({ length: rating });
+const emptyStars = Array.from({ length: maxRating - rating });
+---
+
+<span class="sr-only">{rating} out of {maxRating}</span>
+{filledStars.map(() => <StarIcon filled={true} size={iconSize} />)}
+{emptyStars.map(() => <StarIcon filled={false} size={iconSize} />)}

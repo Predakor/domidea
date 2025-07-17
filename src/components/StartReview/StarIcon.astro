@@ -1,0 +1,17 @@
+---
+import { Icon } from "astro-icon/components";
+
+interface Props {
+  size?: number;
+  filled?: boolean;
+}
+
+const { size = 48, filled = false } = Astro.props;
+---
+
+<Icon
+  size={size}
+  name={filled ? "mdi:star" : "mdi:star-outline"}
+  role={"presentation"}
+  class={"text-primary stroke-1"}
+/>

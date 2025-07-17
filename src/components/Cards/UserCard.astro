@@ -1,0 +1,30 @@
+---
+import { Image } from "astro:assets";
+import UserPlaceholder from "@images/placeholders/user-placeholder.webp";
+
+export type UserType = {
+  name: string;
+  job: string;
+  pictureUrl?: string;
+};
+
+interface Props {
+  user: UserType;
+}
+
+const { name, job, pictureUrl } = Astro.props.user;
+---
+
+<figure class="w-fit h-fit mask mask-center mask-circle">
+  {
+    pictureUrl ? (
+      <img src={pictureUrl} alt="showing user" />
+    ) : (
+      <Image width={64} src={UserPlaceholder} alt="showing user" />
+    )
+  }
+</figure>
+<cite class="flex flex-col items-start gap-2">
+  <h3 class="text-xl">{name}</h3>
+  <p>{job}</p>
+</cite>

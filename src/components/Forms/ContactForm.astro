@@ -1,0 +1,34 @@
+---
+import { emails } from "@data/contactData.json";
+import Input from "./Inputs/Input.astro";
+import TextArea from "./Inputs/TextArea.astro";
+
+const [formEmail] = emails;
+---
+
+<form
+  action={"mailto:" + formEmail}
+  method="POST"
+  enctype="text/plain"
+  class="space-y-4 max-w-md"
+>
+  <Input
+    type="text"
+    label="Imie i Nazwisko"
+    placeholder="Twoje imie i nazwisko"
+  />
+  <Input type="text" label="Email" placeholder="Twój email" />
+  <TextArea
+    id="contact-message"
+    label="Wiadomość"
+    placeholder="Twoja wiadomość"
+  />
+
+  <p class="text-gray-500 text-xs">
+    Wysyłając formularz, zgadzasz się na przetwarzanie swoich danych osobowych
+    wyłącznie w celu kontaktu zwrotnego.
+    <a href="/polityka-prywatnosci" class="underline">Polityka prywatności</a>
+  </p>
+
+  <button type="submit" class="w-full btn lg:btn-lg btn-primary">Wyślij</button>
+</form>

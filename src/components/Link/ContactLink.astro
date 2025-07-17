@@ -18,5 +18,7 @@ const { label, link, class: styles = "", icon } = Astro.props;
   <strong slot={"label"} class="sr-only lg:not-sr-only no-underline">
     {label}
   </strong>
-  <slot />
+  <span class="text-lg">
+    <slot />
+  </span>
 </Link>

@@ -1,0 +1,43 @@
+---
+import type { ContactData } from "@models/contacts";
+import ContactLink from "./Link/ContactLink.astro";
+
+export interface Props {
+  contacts: ContactData;
+}
+
+const { emails, locations, phones } = Astro.props.contacts;
+---
+
+{
+  emails &&
+    emails.map(({ label, name }) => (
+      <ContactLink
+        label={label}
+        link={`mailto:${name}`}
+        icon="mdi:email-outline"
+      >
+        {name}
+      </ContactLink>
+    ))
+}
+{
+  phones &&
+    phones.map(({ prefix, number, label }) => (
+      <ContactLink
+        label={label}
+        link={`tel:${prefix}${number}`}
+        icon="mdi:phone-outline"
+      >
+        {number}
+      </ContactLink>
+    ))
+}
+{
+  locations &&
+    locations.map(({ address, label, link }) => (
+      <ContactLink label={label} link={link} icon="mdi:location-outline">
+        {address}
+      </ContactLink>
+    ))
+}

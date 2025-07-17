@@ -1,0 +1,42 @@
+---
+import TestimonyCard, {
+  type UserReview,
+} from "@components/Cards/TestimonyCard.astro";
+import Stack from "@components/Layout/Stack.astro";
+
+export interface Props {
+  reviews: UserReview[];
+  class?: string;
+}
+const { reviews, class: styles = "" } = Astro.props;
+---
+
+<Stack
+  spacing="large"
+  class={`drop-shadow-2xl p-4 lg:p-16 rounded-lg max-w-screen overflow-x-clip colors-alternate ${styles}`}
+>
+  <h3 class="font-bold text-3xl lg:text-5xl card-title">To Dobra Współpraca</h3>
+
+  <blockquote class="font-medium">
+    <p class="lg:text-xl">
+      Od pierwszego <strong>spotkania</strong> po oddanie <strong
+        >projektu</strong
+      >
+    </p>
+    <p class="lg:text-xl">
+      Stawiamy na otwartą <strong>komunikację</strong>,
+      <br />
+      <strong>zrozumienie</strong> potrzeb i spokojny <strong>proces</strong>.
+    </p>
+  </blockquote>
+
+  <Stack spacing="large">
+    <h4 class="">
+      Cieszymy się, że to <strong>doceniacie</strong>.
+    </h4>
+
+    <div class="max-w-screen overflow-x-scroll carousel">
+      {reviews.map((review) => <TestimonyCard review={review} />)}
+    </div>
+  </Stack>
+</Stack>
