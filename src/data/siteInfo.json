@@ -1,11 +1,11 @@
 {
   "lang": "en",
-  "icon": "____Provide path to a favicon___",
+  "icon": "/favicon.svg",
 
   "info": {
-    "name": "__SiteName___",
-    "origin": "___SiteOrigin___",
-    "description": " ____Please provide page description____"
+    "name": "DomeIdea",
+    "origin": "https://domidea.vercel.app",
+    "description": "Architekci z pasją — pomagamy tworzyć przestrzenie, które odpowiadają Twoim potrzebom. Projektujemy domy, wnętrza i przebudowy. Ludzko, rzeczowo, bez zbędnych formalności."
   },
 
   "ogInfo": {
