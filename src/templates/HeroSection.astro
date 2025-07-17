@@ -7,7 +7,7 @@ export interface Props {
 const { title, description, class: styles = "" } = Astro.props;
 ---
 
-<section class={`flex min-h-svh section ${styles}`}>
+<section id="home" class={`flex min-h-svh section ${styles}`}>
   {title && <h1>{title}</h1>}
   {description && <blockquote class="prose prose-xl">{description}</blockquote>}
   <slot />

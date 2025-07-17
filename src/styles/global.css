@@ -13,6 +13,10 @@
   --color-base-300: oklch(25% 0.007 250);
 }
 
+@view-transition {
+  navigation: auto;
+}
+
 @layer base {
   h1 {
     @apply text-4xl lg:text-7xl font-bold;

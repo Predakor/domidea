@@ -1,4 +1,6 @@
 [
-  { "link": "", "label": "Home" },
-  { "link": "about", "label": "About" }
+  { "link": "#home", "label": "Home" },
+  { "link": "#about", "label": "O nas" },
+  { "link": "#services", "label": "Oferta" },
+  { "link": "#contact", "label": "Kontakt" }
 ]

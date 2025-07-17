@@ -4,7 +4,11 @@ import NavItems from "./NavItems.astro";
 import MainLogo from "@components/Logo/MainLogo.astro";
 ---
 
-<nav class="py-0 navbar">
+<nav
+  id="main-nav"
+  aria-label="main navigation"
+  class="z-50 fixed py-0 transition-transform duration-300 navbar"
+>
   <span class="navbar-start">
     <slot name="nav-start">
       <MainLogo />
@@ -15,7 +19,7 @@ import MainLogo from "@components/Logo/MainLogo.astro";
     <slot name="nav-end">
       <NavItems class="desktop-only lg:menu lg:menu-horizontal" />
 
-      <Drawer class="mobile-only" drawerId="main-nav">
+      <Drawer class="mobile-only" drawerId="main-nav-input">
         <NavItems
           slot={"nav-items"}
           direction="vertical"
@@ -25,3 +29,55 @@ import MainLogo from "@components/Logo/MainLogo.astro";
     </slot>
   </div>
 </nav>
+
+<script is:inline type="module">
+  const navbar = document.getElementById("main-nav");
+  const [firstSection] = document.getElementsByTagName("section");
+
+  const visibilityClasses = ["-translate-y-full"];
+  const opacityClasses = ["bg-base-100/75", "backdrop-blur-xs"];
+  const firstSectiontTreshold = firstSection?.offsetHeight ?? 800;
+
+  let lastScroll = 0;
+  let hasFocus = false;
+
+  if (navbar) {
+    window.addEventListener("scroll", scrollHandler);
+    navbar.addEventListener("focusout", () => (hasFocus = false));
+    navbar.addEventListener("focusin", () => {
+      hasFocus = true;
+      showNavbar();
+    });
+  }
+
+  function scrollHandler() {
+    const currentScroll = window.scrollY;
+
+    if (hasFocus) {
+      showNavbar();
+      return;
+    }
+
+    const inFirstSection = currentScroll <= firstSectiontTreshold;
+    if (inFirstSection) {
+      showNavbar();
+      navbar.classList.remove(...opacityClasses);
+      return;
+    }
+
+    navbar.classList.add(...opacityClasses);
+
+    const scrollsDown = currentScroll > lastScroll;
+    scrollsDown ? hideNavbar() : showNavbar();
+
+    lastScroll = currentScroll;
+  }
+
+  function showNavbar() {
+    navbar.classList.remove(visibilityClasses);
+  }
+
+  function hideNavbar() {
+    navbar.classList.add(visibilityClasses);
+  }
+</script>
